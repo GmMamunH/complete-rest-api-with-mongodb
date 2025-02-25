@@ -1,6 +1,6 @@
 # complete-rest-api-with-mongodb
 
-## API Link:https://restapiwithmongodb.vercel.app/
+## API Link: https://restapiwithmongodb.vercel.app/
 - GET all users - /api/users
 - GET a single user - /api/users/:id
 - Create an user -  /api/users/  
