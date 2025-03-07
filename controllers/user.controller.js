@@ -28,6 +28,13 @@ const createUser = async (req, res) => {
       prof: req.body.prof,
       age: Number(req.body.age),
     });
+    // Check if user already exists in the database
+    const query ={name: newUser.name}
+    const userExists = await User.findOne(query);
+    if(userExists){
+      return res.status(400).json({ message: "User already exists" });
+    }
+
     await newUser.save();
     res.status(201).json(newUser);
   } catch (error) {

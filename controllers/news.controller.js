@@ -13,7 +13,7 @@ const getAllPosts = async (req, res) => {
 
 const getOnePost = async (req, res) => {
   try {
-    const post = awaitPost.findOne({ id: req.params.id });
+    const post = await Post.findById(req.params.id);
     res.status(200).json(post);
   } catch (error) {
     res.status(500).send(error.message);
@@ -23,7 +23,6 @@ const getOnePost = async (req, res) => {
 const createPost = async (req, res) => {
   try {
     const newPost = new Post({
-      // id: uuidv4(),
       name: req.body.name,
       prof: req.body.prof,
       age: Number(req.body.age),
@@ -37,7 +36,7 @@ const createPost = async (req, res) => {
 
 const updatePost = async (req, res) => {
   try {
-    const post = await Post.findOne({ id: req.params.id });
+    const post = await Post.findById(req.params.id);
     post.name = req.body.name;
     post.prof = req.body.prof;
     post.age = Number(req.body.age);
@@ -50,7 +49,7 @@ const updatePost = async (req, res) => {
 
 const deletePost = async (req, res) => {
   try {
-    await Post.deleteOne({ id: req.params.id });
+    await Post.findByIdAndDelete(req.params.id); 
     res.status(200).json({ message: "post is deleted" });
   } catch (error) {
     res.status(500).send(error.message);
